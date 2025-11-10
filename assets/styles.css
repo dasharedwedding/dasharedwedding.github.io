@@ -1,3 +1,11 @@
+@font-face {
+    font-family: "MeowScript";
+    src: url("MeowScript-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -27,13 +35,13 @@ body {
     z-index: 0;
 }
 
-.hero::before {
+/*.hero::before { Dasha wants the bg to be bright
     content: "";
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.45);
     z-index: -1;
-}
+}*/
 
 /* Top navigation centered */
 nav {
@@ -84,10 +92,11 @@ nav a.active {
 }
 
 .names {
-    font-size: clamp(2.4rem, 4vw, 3.4rem);
+    font-family: "MeowScript", serif;
+    font-size: clamp(4.8rem, 8vw, 6.8rem);
     font-weight: 500;
     letter-spacing: 0.14em;
-    text-transform: uppercase;
+    /*text-transform: uppercase; dasha doesnt like all caps */
     margin-bottom: 24px;
 }
 
@@ -187,5 +196,61 @@ nav a.active {
 
     .section {
         padding: 60px 16px;
+    }
+}
+
+/* Inner pages: full photo background like hero */
+body.page {
+    min-height: 100vh;
+    color: #ffffff;
+    background-image: url("../images/bg.jpg"); /* same as hero */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* nice subtle parallax effect */
+    position: relative;
+}
+
+/* Shared fixed nav (already loaded via nav.html + script.js) */
+body.page nav {
+    background: #ffffff;
+    border-bottom: 1px solid #eee;
+    color: #222222;
+}
+
+.page-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 110px 24px 60px; /* top accounts for fixed nav */
+    position: relative;
+    z-index: 1;
+
+    background: rgba(255, 255, 255, 0.10);   /* barely transparent */
+    backdrop-filter: blur(6px);              /* soft glass effect (supported modern browsers) */
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 18px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+}
+
+/* Headings & text on the translucent panel */
+.page-content h1 {
+    font-size: 1.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.page-content p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #f4f4f4;
+    margin-bottom: 14px;
+}
+
+/* Mobile tweak */
+@media (max-width: 600px) {
+    .page-content {
+        padding: 96px 16px 40px;
     }
 }
