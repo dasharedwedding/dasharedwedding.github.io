@@ -35,13 +35,13 @@ body {
     z-index: 0;
 }
 
-/*.hero::before { Dasha wants the bg to be bright
+.hero::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(0, 0, 0, 0.35);
     z-index: -1;
-}*/
+}
 
 /* Top navigation centered */
 nav {
