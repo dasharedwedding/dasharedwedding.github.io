@@ -15,16 +15,16 @@ body {
     background-color: #f8f5f0;
 }
 
-/* Hero (top section with photo) */
 .hero {
     position: relative;
     width: 100%;
     height: 100vh;
     color: #ffffff;
-    background-image: url("../images/bg.jpg"); /* placeholder */
+    background-image: url("../images/bg.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    z-index: 0;
 }
 
 .hero::before {
@@ -32,7 +32,7 @@ body {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.45);
-    z-index: 0;
+    z-index: -1;
 }
 
 /* Top navigation centered */
@@ -45,7 +45,7 @@ nav {
     display: flex;
     justify-content: center;
     gap: 26px;
-    z-index: 2;
+    z-index: 9999;
     font-size: 0.95rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -130,10 +130,6 @@ nav a.active {
     gap: 14px;
     align-items: center;
     color: #ffffff;
-}
-
-.count-label {
-    opacity: 0.9;
 }
 
 .count-value {
