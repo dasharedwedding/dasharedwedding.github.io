@@ -43,6 +43,7 @@ body::before {
 
 body.page {
     min-height: 100vh;
+    overflow: hidden;
     padding: 80px 20px 40px;      /* ~nav height at top + some bottom space */
     box-sizing: border-box;
 
@@ -62,7 +63,7 @@ nav {
     display: flex;
     justify-content: center;
     gap: 26px;
-    z-index: 9999;
+    z-index: 99;
     font-size: 0.95rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -160,41 +161,25 @@ nav a.disabled {
     font-weight: 500;
 }
 
-/* Mobile tweaks */
-@media (max-width: 600px) {
-    nav {
-        padding: 14px 12px;
-        gap: 14px;
-        font-size: 0.7rem;
-        flex-wrap: wrap;
-    }
 
-    .content {
-        padding-top: 20vh;
-    }
-
-    .countdown {
-        flex-direction: column;
-        gap: 4px;
-        text-align: center;
-    }
-
-    .section {
-        padding: 60px 16px;
-    }
-}
 
 .page-content {
     max-width: 800px;
+    width: 100%;
     margin: 0 auto 24px; /* keep bottom space for countdown */
     padding: 48px 48px 48px;
+
+    max-height: calc(100vh - 160px);  /* tweak: 160px ≈ top+bottom padding */
+    overflow-y: auto;                 /* scroll INSIDE the card */
+    -webkit-overflow-scrolling: touch;
+
     position: relative;
     z-index: 1;
 
     background: rgba(48, 16, 64, 0.75);   /* barely transparent */
     backdrop-filter: blur(6px);              /* soft glass effect (supported modern browsers) */
     -webkit-backdrop-filter: blur(6px);
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
     justify-content: center;      /* horizontal center */
     align-items: center;          /* vertical center */
@@ -231,8 +216,29 @@ nav a.disabled {
     margin-bottom: 14px;
 }
 
-/* Mobile tweak */
+/* Mobile tweaks */
 @media (max-width: 600px) {
+    nav {
+        padding: 14px 12px;
+        gap: 14px;
+        font-size: 0.7rem;
+        flex-wrap: wrap;
+    }
+
+    .content {
+        padding-top: 20vh;
+    }
+
+    .countdown {
+        flex-direction: column;
+        gap: 4px;
+        text-align: center;
+    }
+
+    .section {
+        padding: 60px 16px;
+    }
+
     .page-content {
         padding: 48px 16px 48px;
     }

@@ -1,0 +1,94 @@
+/* Hide content while auth check runs
+html.auth-check body {
+    visibility: hidden;
+}
+
+html.auth-ok body {
+    visibility: visible;
+}
+*/
+
+/* Fullscreen password overlay */
+.password-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.9);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    color: #ffffff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro", sans-serif;
+}
+
+.password-box {
+    max-width: 360px;
+    width: 90%;
+    padding: 26px 22px 22px;
+    border-radius: 18px;
+    background: rgba(10, 10, 10, 0.9);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.password-box h2 {
+    margin: 0 0 8px;
+    font-size: 1.1rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.password-box p {
+    margin: 0 0 14px;
+    font-size: 0.9rem;
+    color: #bbbbbb;
+}
+
+.password-input {
+    width: 100%;
+    padding: 9px 10px;
+    margin: 0 0 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: transparent;
+    color: #ffffff;
+    font-size: 0.95rem;
+    text-align: center;
+    outline: none;
+}
+
+.password-input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.password-button {
+    width: 100%;
+    padding: 9px 10px;
+    border-radius: 999px;
+    border: none;
+    background: #ffffff;
+    color: #000000;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    cursor: pointer;
+}
+
+.password-button:hover {
+    opacity: 0.9;
+}
+
+.password-error {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: #ff6b6b;
+}
