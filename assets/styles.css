@@ -37,8 +37,8 @@ body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.45); /* adjust darkness */
-    z-index: 0; /* below nav + content (which we set > 0) */
+    background: rgba(0, 0, 0, 0.25); /* adjust darkness */
+    z-index: 0;
 }
 
 body.page {
@@ -178,15 +178,15 @@ nav a.active {
 
 .page-content {
     max-width: 800px;
-    margin: 0 auto 24px;
-    padding: 60px 48px 60px;
+    margin: 0 auto 24px; /* keep bottom space for countdown */
+    padding: 48px 48px 48px;
     position: relative;
     z-index: 1;
 
     background: rgba(48, 16, 64, 0.75);   /* barely transparent */
     backdrop-filter: blur(6px);              /* soft glass effect (supported modern browsers) */
     -webkit-backdrop-filter: blur(6px);
-    border-radius: 18px;
+    border-radius: 5px;
     box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
     justify-content: center;      /* horizontal center */
     align-items: center;          /* vertical center */
@@ -194,7 +194,7 @@ nav a.active {
 
 /* Headings & text on the translucent panel */
 .page-content h1 {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     margin-bottom: 20px;
@@ -226,6 +226,9 @@ nav a.active {
 /* Mobile tweak */
 @media (max-width: 600px) {
     .page-content {
-        padding: 96px 16px 40px;
+        padding: 48px 16px 48px;
+    }
+    .page-content img {
+        margin: 25px 0 25px 0;
     }
 }
