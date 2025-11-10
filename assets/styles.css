@@ -18,29 +18,38 @@ html {
 
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro", sans-serif;
-    color: #222222;
-    min-height: 100vh;
-    background-color: #f8f5f0;
-}
-
-.hero {
     position: relative;
-    width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     color: #ffffff;
+
+    /* Shared background for ALL pages */
     background-image: url("../images/bg.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
+
     z-index: 0;
 }
 
-.hero::before {
+/* Dark overlay on top of background, behind all content */
+body::before {
     content: "";
-    position: absolute;
+    position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.35);
-    z-index: -1;
+    background: rgba(0, 0, 0, 0.45); /* adjust darkness */
+    z-index: 0; /* below nav + content (which we set > 0) */
+}
+
+body.page {
+    min-height: 100vh;
+    padding: 80px 20px 40px;      /* ~nav height at top + some bottom space */
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;          /* horizontal center */
+    justify-content: center;      /* vertical center */
 }
 
 /* Top navigation centered */
@@ -79,7 +88,7 @@ nav a.active {
 }
 
 /* Hero content (names/date/location higher on page) */
-.content {
+.home-content {
     position: relative;
     z-index: 2;
     height: 100%;
@@ -114,65 +123,33 @@ nav a.active {
     opacity: 0.9;
 }
 
-/* Countdown at bottom of hero */
 .countdown-wrapper {
-    position: absolute;
+    position: fixed;          /* was absolute */
     left: 0;
     right: 0;
-    bottom: 0;
-    padding: 12px 20px;
+    bottom: 16px;             /* adjust: 0–24px depending on spacing */
     display: flex;
     justify-content: center;
-    z-index: 2;
-    pointer-events: none;
+    z-index: 90;              /* below nav (z-index:100), above overlay (0) */
+    pointer-events: none;     /* so it doesn’t block clicks behind, except pill */
 }
 
 .countdown {
     pointer-events: auto;
-    background: rgba(0, 0, 0, 0.52);
+    background: rgba(0, 0, 0, 1);
     padding: 10px 22px;
     border-radius: 999px;
     font-size: 0.85rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     display: flex;
-    gap: 14px;
+    gap: 10px;
     align-items: center;
     color: #ffffff;
 }
 
 .count-value {
     font-weight: 500;
-}
-
-/* Generic sections below hero */
-.section {
-    padding: 80px 20px;
-    background-color: #f8f5f0;
-}
-
-.section:nth-of-type(even) {
-    background-color: #f2ece4;
-}
-
-.section-inner {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.section h2 {
-    font-size: 1.6rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 18px;
-    color: #444;
-}
-
-.section p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: #555;
-    margin-bottom: 12px;
 }
 
 /* Mobile tweaks */
@@ -199,37 +176,20 @@ nav a.active {
     }
 }
 
-/* Inner pages: full photo background like hero */
-body.page {
-    min-height: 100vh;
-    color: #ffffff;
-    background-image: url("../images/bg.jpg"); /* same as hero */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed; /* nice subtle parallax effect */
-    position: relative;
-}
-
-/* Shared fixed nav (already loaded via nav.html + script.js) */
-body.page nav {
-    background: #ffffff;
-    border-bottom: 1px solid #eee;
-    color: #222222;
-}
-
 .page-content {
     max-width: 800px;
-    margin: 0 auto;
-    padding: 110px 24px 60px; /* top accounts for fixed nav */
+    margin: 0 auto 24px;
+    padding: 60px 48px 60px;
     position: relative;
     z-index: 1;
 
-    background: rgba(255, 255, 255, 0.10);   /* barely transparent */
+    background: rgba(48, 16, 64, 0.75);   /* barely transparent */
     backdrop-filter: blur(6px);              /* soft glass effect (supported modern browsers) */
     -webkit-backdrop-filter: blur(6px);
     border-radius: 18px;
     box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    justify-content: center;      /* horizontal center */
+    align-items: center;          /* vertical center */
 }
 
 /* Headings & text on the translucent panel */
@@ -238,7 +198,22 @@ body.page nav {
     letter-spacing: 0.12em;
     text-transform: uppercase;
     margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom-width: 1px;
+    border-bottom-color: #ffffff;
+    border-bottom-style: solid;
     color: #ffffff;
+    width: fit-content;
+}
+
+.page-content img {
+    width: 100%;
+    max-height: 260px;          /* adjust as needed */
+    object-fit: cover;
+    border-radius: 14px;
+    margin: 50px 0 50px 0;
+    display: block;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .page-content p {
