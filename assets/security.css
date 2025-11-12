@@ -18,7 +18,7 @@ html.auth-ok body {
     align-items: center;
     justify-content: center;
 
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.5);
 
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
