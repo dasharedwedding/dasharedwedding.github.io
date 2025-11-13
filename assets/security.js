@@ -28,7 +28,7 @@ function showPasswordOverlay() {
 
     overlay.innerHTML = `
     <div class="password-box">
-      <h2>Renard &amp; Dasha</h2>
+      <h2>Renard & Dasha</h2>
       <p>Enter our wedding password to view the site.</p>
       <input
         type="password"

@@ -7,6 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
     initCountdown();
 });
 
+const el = document.getElementById('today');
+if (el) {
+    el.textContent = new Date().toLocaleDateString(undefined, {
+        month: 'long', day: 'numeric', year: 'numeric'
+    });
+}
+
 // Load shared nav into #nav-placeholder
 async function loadNav() {
     const placeholder = document.getElementById("nav-placeholder");
