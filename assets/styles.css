@@ -1,3 +1,8 @@
+:root {
+    --top-pad: 48px;        /* space for the fixed nav */
+    --bottom-gap: 24px;     /* the gap you want under the card */
+}
+
 @font-face {
     font-family: "MeowScript";
     src: url("MeowScript-Regular.ttf") format("truetype");
@@ -5,12 +10,12 @@
     font-style: normal;
 }
 
-@font-face {
-    font-family: "Inter";
-    src: url("Inter_24pt-Regular.ttf") format("truetype");
-    font-weight: 400;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: "Inter";*/
+/*    src: url("Inter_24pt-Regular.ttf") format("truetype");*/
+/*    font-weight: 400;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: "Nunito";
@@ -18,6 +23,13 @@
     font-weight: 400;
     font-style: normal;
 }
+
+/*@font-face {*/
+/*    font-family: "EBGaramond";*/
+/*    src: url("EBGaramond-Regular.ttf") format("truetype");*/
+/*    font-weight: 400;*/
+/*    font-style: normal;*/
+/*}*/
 
 * {
     margin: 0;
@@ -27,9 +39,16 @@
 
 html {
     scroll-behavior: smooth;
+    height: 100%;
 }
 
+html:has(body.page) {
+    overflow: hidden;
+}
+
+
 body {
+    height: 100%;
     font-family: "Nunito", sans-serif;
     position: relative;
     min-height: 100vh;
@@ -55,13 +74,13 @@ body::before {
 }
 
 body.page {
-    min-height: 100vh;
+    min-height: 100dvh;
     overflow: hidden;
-    padding: 20px 20px 0;      /* ~nav height at top */
+    padding: var(--top-pad) 20px 0;
     box-sizing: border-box;
 
     display: flex;
-    flex-direction: column;
+    /*flex-direction: column;*/
     align-items: center;          /* horizontal center */
     justify-content: center;      /* vertical center */
 }
@@ -179,17 +198,19 @@ nav a.disabled {
 .page-content {
     max-width: 800px;
     width: 100%;
-    margin: 48px auto; /* 0 auto 24px keep bottom space for countdown */
-    padding: 48px 48px 48px;
+    margin: 0 auto; /* 0 auto 24px keep bottom space for countdown */
+    padding: 48px;
 
-    max-height: calc(100vh - 10vh);  /* tweak: 160px ≈ top+bottom padding */
+    max-height: calc(100dvh - var(--top-pad) - var(--bottom-gap));
     overflow-y: auto;                 /* scroll INSIDE the card */
     -webkit-overflow-scrolling: touch;
 
     position: relative;
     z-index: 1;
 
-    background: rgba(48, 16, 64, 0.75);   /* barely transparent */
+    /*background: rgba(110, 70, 90, 0.75);*/
+    background: rgba(95, 90, 115, 0.8);
+
     backdrop-filter: blur(6px);              /* soft glass effect (supported modern browsers) */
     -webkit-backdrop-filter: blur(6px);
     border-radius: 10px;
@@ -200,10 +221,11 @@ nav a.disabled {
 
 /* Headings & text on the translucent panel */
 .page-content h1 {
+    text-align: center;
     font-size: 1.4rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin: 0 auto 20px;
     padding-bottom: 20px;
     border-bottom-width: 1px;
     border-bottom-color: #ffffff;
@@ -235,7 +257,7 @@ nav a.disabled {
 .page-content p {
     font-size: 1rem;
     line-height: 1.7;
-    color: #f4f4f4;
+    color: #ffffff;
     margin-bottom: 14px;
 }
 
@@ -270,7 +292,7 @@ nav a.disabled {
     }
 
     .page-content {
-        padding: 48px 16px 48px;
+        padding: 20px 16px 20px;
     }
     .page-content img {
         margin: 25px 0 25px 0;
