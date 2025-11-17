@@ -57,7 +57,7 @@ body::before {
 body.page {
     min-height: 100vh;
     overflow: hidden;
-    padding: 80px 20px 40px;      /* ~nav height at top + some bottom space */
+    padding: 20px 20px 0;      /* ~nav height at top */
     box-sizing: border-box;
 
     display: flex;
@@ -179,10 +179,10 @@ nav a.disabled {
 .page-content {
     max-width: 800px;
     width: 100%;
-    margin: 0 auto 24px; /* keep bottom space for countdown */
+    margin: 48px auto; /* 0 auto 24px keep bottom space for countdown */
     padding: 48px 48px 48px;
 
-    max-height: calc(100vh - 160px);  /* tweak: 160px ≈ top+bottom padding */
+    max-height: calc(100vh - 10vh);  /* tweak: 160px ≈ top+bottom padding */
     overflow-y: auto;                 /* scroll INSIDE the card */
     -webkit-overflow-scrolling: touch;
 
