@@ -19,32 +19,47 @@
     </head>
     <body class="page">
         <div id="nav-placeholder"></div>
-        <main class="page-content">
+        <main class="page-content details">
             <h1>Wedding Details</h1>
-            <img src="images/info.jpg" alt="info"/>
+            <img class="banner" src="images/info.jpg" alt="The Conservatory at Sussex County Fairgrounds" />
 
-            <h2>Venue</h2>
-            <h3>The Conservatory at Sussex County Fairgrounds</h3>
-            <p><a href="https://maps.app.goo.gl/pzU97WY8QbnAMrcp8" target="_blank">37 Plains Road, Augusta, NJ 07822</a></p>
-            <p>
-                Both ceremony and reception will take place at this location.<br/>
-                Ceremony: Outdoors (weather permitting)<br/>
-                Reception: Indoors
-            </p>
+            <!-- At a glance -->
+            <section class="at-a-glance">
+                <ul class="info-grid">
+                    <li><span class="k">Date</span><span class="v"><time datetime="2026-11-07">Saturday, November 7, 2026</time></span></li>
+                    <li><span class="k">Venue</span><span class="v">The Conservatory at Sussex County Fairgrounds</span></li>
+                    <li><span class="k">Address</span><span class="v"><a href="https://maps.app.goo.gl/pzU97WY8QbnAMrcp8" target="_blank" rel="noopener">37 Plains Road, Augusta, NJ 07822</a></span></li>
+                    <li><span class="k">Dress Code</span><span class="v">Cocktail attire</span></li>
+                </ul>
+            </section>
 
-            <p>Travel details can be found on our <a href="travel.html">Travel</a> page.<br/></p>
-            <h2>Schedule</h2>
-            <h3>Saturday, November 7, 2026</h3>
-            <p>
-                To Be Announced...<br/>
-                (expect a mid-afternoon ceremony with cocktail hour and reception to follow)
-            </p>
+            <section>
+                <h2>Schedule</h2>
+                <p>
+                    <strong>To Be Announced...</strong><br/><!--TODO: schedule-->
+                    Expect a late-afternoon ceremony with cocktail hour and reception to follow.
+                </p>
+            </section>
 
-            <h2>Dress Code</h2>
-            <h3>Semi-formal / cocktail attire<!--TODO Dresscode--></h3>
-            <p>
-                November evenings in New Jersey can be chilly, so a layer is a good idea.
-            </p>
+            <section>
+                <h2>Venue</h2>
+                <p class="lede">Ceremony and reception will be held at the <strong>same location</strong>.</p>
+                <ul class="bullets">
+                    <li>Ceremony: <strong>outdoors (weather permitting)</strong></li>
+                    <li>Reception: <strong>indoors</strong></li>
+                </ul>
+                <p class="note">Travel, hotel, and parking details are on the <a href="travel.html">Travel</a> page.</p>
+            </section>
+
+            <section>
+                <h2>Dress Code</h2>
+                <p>
+                    <strong>Cocktail attire.</strong><br/>
+                    November evenings in New Jersey can be chilly, so a layer is a good idea.
+                </p>
+            </section>
+
+
         </main>
     </body>
 </html>
