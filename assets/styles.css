@@ -226,7 +226,7 @@ nav a.disabled {
     letter-spacing: 0.12em;
     text-transform: uppercase;
     margin: 0 auto 20px;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     border-bottom-width: 1px;
     border-bottom-color: #ffffff;
     border-bottom-style: solid;
@@ -236,22 +236,12 @@ nav a.disabled {
 
 .page-content img {
     width: 100%;
-    max-height: 260px;          /* adjust as needed */
+    margin: 20px 0;
+    max-height: 320px;          /* adjust as needed */
     object-fit: cover;
     border-radius: 14px;
-    margin: 50px 0 50px 0;
     display: block;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-}
-
-.page-content img.square {
-    width: 100%;
-    height: auto;
-    max-height: none;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    display: block;
-    border-radius: 12px;
 }
 
 .page-content p {
