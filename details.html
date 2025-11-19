@@ -9,6 +9,7 @@
         <script src="assets/script.js" defer></script>
         <link rel="stylesheet" href="assets/security.css" />
         <script src="assets/security.js" defer></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-WJN626HPX7"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
@@ -23,38 +24,56 @@
             <h1>Wedding Details</h1>
             <img src="images/info.jpg" alt="The Conservatory at Sussex County Fairgrounds" />
 
-            <!-- At a glance -->
-            <section class="at-a-glance">
-                <ul class="info-grid">
-                    <li><span class="k">Date</span><span class="v"><time datetime="2026-11-07">Saturday, November 7, 2026</time></span></li>
-                    <li><span class="k">Venue</span><span class="v">The Conservatory at Sussex County Fairgrounds</span></li>
-                    <li><span class="k">Address</span><span class="v"><a href="https://maps.app.goo.gl/pzU97WY8QbnAMrcp8" target="_blank" rel="noopener">37 Plains Road, Augusta, NJ 07822</a></span></li>
-                    <li><span class="k">Dress Code</span><span class="v">Cocktail attire</span></li>
-                </ul>
-            </section>
-
             <section>
-                <h2>Schedule</h2>
+                <h2>
+                    <span class="material-symbols-outlined">calendar_month</span>
+                    Date
+                </h2>
                 <p>
-                    <strong>To Be Announced...</strong><br/><!--TODO: schedule-->
-                    Expect a late-afternoon ceremony with cocktail hour and reception to follow.
+                    <strong><time datetime="2026-11-07">Saturday, November 7, 2026</time></strong>
                 </p>
             </section>
 
             <section>
-                <h2>Venue</h2>
-                <p class="lede">Ceremony and reception will be held at the <strong>same location</strong>.</p>
-                <ul class="bullets">
-                    <li>Ceremony: <strong>outdoors (weather permitting)</strong></li>
-                    <li>Reception: <strong>indoors</strong></li>
-                </ul>
-                <p class="note">Travel, hotel, and parking details are on the <a href="travel.html">Travel</a> page.</p>
+                <h2>
+                    <span class="material-symbols-outlined">map_pin_heart</span>
+                    Venue
+                </h2>
+                <p>
+                    <a href="https://maps.app.goo.gl/pzU97WY8QbnAMrcp8" target="_blank" rel="noopener"><strong>The Conservatory at Sussex County Fairgrounds</strong></a><br/>
+                    37 Plains Road, Augusta, NJ 07822
+                </p>
+                <p>
+                    Both the ceremony (outdoors) and the reception (indoors) will be held at this venue.
+                    In the event of inclement weather, the ceremony will also be held indoors.
+                </p>
+                <p class="note">Travel, hotel, and parking information are found on the <a href="travel.html">Travel</a> page.</p>
             </section>
 
             <section>
-                <h2>Dress Code</h2>
+                <h2>
+                    <span class="material-symbols-outlined">schedule</span>
+                    Schedule
+                </h2>
                 <p>
-                    <strong>Cocktail attire.</strong><br/>
+                    <strong>To Be Announced...</strong><br/>
+                    Expect a late-afternoon ceremony with cocktail hour and reception to follow.
+                </p>
+                <!--TODO: schedule-->
+                <!--<ul class="bullets">
+                    <li>X:XX-X:XX: <strong>Ceremony</strong></li>
+                    <li>X:XX-X:XX: <strong>Cocktail Hour</strong></li>
+                    <li>X:XX-X:XX: <strong>Reception</strong></li>
+                </ul>-->
+            </section>
+
+            <section>
+                <h2>
+                    <span class="material-symbols-outlined">checkroom</span>
+                    Dress Code
+                </h2>
+                <p>
+                    <a href="https://www.theknot.com/content/cocktail-wedding-attire" target="_blank"><strong>Cocktail attire</strong></a><br/>
                     November evenings in New Jersey can be chilly, so a layer is a good idea.
                 </p>
             </section>

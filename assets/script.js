@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const el = document.getElementById('today');
 if (el) {
     el.textContent = new Date().toLocaleDateString(undefined, {
-        month: 'long', day: 'numeric', year: 'numeric'
+        month: 'long', day: 'numeric'
     });
 }
 
