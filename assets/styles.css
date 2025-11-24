@@ -279,6 +279,15 @@ section {
     margin-bottom: 5px;
 }
 
+.badge {
+    margin-left: .5em;
+    padding: .15em .5em;
+    border-radius: 999px;
+    font-size: .75rem;
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.25);
+}
+
 /* Mobile tweaks */
 @media (max-width: 640px) {
     :root {
