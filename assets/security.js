@@ -2,7 +2,7 @@
 
 // You deserve to know the password if you are hacking our site :)
 // That does not mean you are invited lol
-const WEDDING_PASSWORD = "110726";
+const WEDDING_PASSWORD = "1107";
 const ACCESS_KEY = "wedding_site_access_v1";
 
 (function initPasswordGate() {
