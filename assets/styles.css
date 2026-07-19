@@ -477,6 +477,10 @@ summary:focus-visible {
    Glass card pages
    ============================================================ */
 
+/* No backdrop-filter here: combined with overflow-y scrolling it triggers a
+   Chrome compositing bug that blurs the scrolled content itself, not just
+   the backdrop (reproducible on mobile Chrome as a blank/blurred page). The
+   card's near-opaque background color keeps the glass look without it. */
 .page-content {
     max-width: 840px;
     width: 100%;
@@ -494,8 +498,6 @@ summary:focus-visible {
     z-index: 1;
 
     background: var(--card);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     border: 1px solid var(--card-line);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
