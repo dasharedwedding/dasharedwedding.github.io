@@ -126,6 +126,12 @@ function initReveal() {
         return;
     }
 
+    // Explicit root: these sections scroll inside .page-content, not the
+    // document. Mobile Chrome doesn't reliably fire IntersectionObserver
+    // callbacks for a target scrolled inside a nested overflow container
+    // when left to the default (viewport) root, leaving .reveal sections
+    // stuck at opacity:0 until something forces a layout recalc (e.g. a
+    // rotation). Passing the actual scrolling ancestor as root fixes it.
     const io = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
@@ -135,7 +141,7 @@ function initReveal() {
                 }
             });
         },
-        { threshold: 0.12, rootMargin: "0px 0px -30px 0px" }
+        { root: document.querySelector(".page-content"), threshold: 0.12, rootMargin: "0px 0px -30px 0px" }
     );
 
     els.forEach((el) => io.observe(el));
