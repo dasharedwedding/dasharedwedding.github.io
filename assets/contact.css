@@ -1,66 +1,61 @@
-.card {
-    width: 100%;
-    max-width: 720px;
-    background: var(--card);
-    border: 1px solid var(--card-border);
-    border-radius: 18px;
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    padding: 24px;
+/* ===== Contact page: form ===== */
+
+form.contact-form {
+    display: grid;
+    gap: 18px;
 }
 
-h1 {
-    margin: 0 0 6px;
-    font-size: 1.6rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-align: center;
+.row {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: 1fr;
 }
 
-.sub {
-    margin: 0 0 20px;
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.95rem;
+@media (min-width: 640px) {
+    .row {
+        grid-template-columns: 1fr 1fr;
+    }
 }
-
-/* Form layout */
-form.contact-form { display: grid; gap: 16px; }
-
-.row { display: grid; gap: 16px; grid-template-columns: 1fr; }
-@media (min-width: 640px) { .row { grid-template-columns: 1fr 1fr; } }
 
 .field label {
     display: block;
-    margin: 0 0 0.35rem;
-    font-size: 0.9rem;
-    letter-spacing: 0.08em;
+    margin: 0 0 0.45rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--accent);
 }
 
 .field input,
 .field textarea {
     width: 100%;
-    padding: 12px 14px;
+    padding: 13px 16px;
     border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.28);
-    background: rgba(255,255,255,0.06);
-    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 1rem;
     outline: none;
-    transition: border-color .2s, box-shadow .2s, background .2s;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
-.field textarea { resize: vertical; min-height: 140px; }
+
+.field textarea {
+    resize: vertical;
+    min-height: 150px;
+}
 
 .field input::placeholder,
-.field textarea::placeholder { color: rgba(255,255,255,0.55); }
+.field textarea::placeholder {
+    color: var(--faint);
+}
 
 .field input:focus,
 .field textarea:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(255,255,255,0.15);
-    background: rgba(255,255,255,0.09);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .actions {
@@ -70,51 +65,43 @@ form.contact-form { display: grid; gap: 16px; }
     flex-wrap: wrap;
 }
 
-.btn {
-    border: 1px solid rgba(255,255,255,0.45);
-    padding: 12px 20px;
-    border-radius: 12px;
-    background: var(--accent);
-    color: #ffffff;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    cursor: pointer;
+.btn[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
 }
-.btn[disabled] { opacity: 0.6; cursor: not-allowed; }
 
 /* Status messages */
 .status {
     display: none;
     font-size: 0.95rem;
-    padding: 10px 14px;
+    padding: 10px 16px;
     border-radius: 12px;
 }
+
 .status.ok {
-    display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: #062a10;
-    background: rgba(126,242,154,0.25);
-    border: 1px solid rgba(126,242,154,0.45);
+    color: #dff7e4;
+    background: rgba(126, 242, 154, 0.16);
+    border: 1px solid rgba(126, 242, 154, 0.4);
 }
+
 .status.err {
-    display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: #2a0b0b;
-    background: rgba(255,107,107,0.25);
-    border: 1px solid rgba(255,107,107,0.45);
+    color: #ffe2e2;
+    background: rgba(255, 107, 107, 0.16);
+    border: 1px solid rgba(255, 107, 107, 0.4);
 }
 
 .contact-form.is-disabled {
-    opacity: 0.6;
-    pointer-events: none;           /* belt-and-suspenders with inert/disabled */
+    opacity: 0.65;
+    pointer-events: none;
 }
 
 .contact-form.is-disabled .btn {
     cursor: default;
-    opacity: 0.7;
 }
 
 #statusOk,
@@ -123,4 +110,10 @@ form.contact-form { display: grid; gap: 16px; }
 }
 
 /* Honeypot (hidden) */
-.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}

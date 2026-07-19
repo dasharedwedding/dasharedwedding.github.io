@@ -4,6 +4,7 @@
 		<meta charset="UTF-8" />
 		<title>Renard & Dasha's Wedding</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Renard & Dasha are getting married on November 7, 2026 in Augusta, New Jersey." />
 		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" href="assets/styles.css" />
 		<script src="assets/script.js" defer></script>
@@ -19,15 +20,22 @@
 	</head>
 	<body class="home">
 		<div id="nav-placeholder"></div>
-		<main class="home-content">
-			<div class="names">Renard & Dasha</div>
-			<div class="date">November 7, 2026</div>
-			<div class="location">Augusta, New Jersey</div>
-		</main>
-		<footer class="countdown-wrapper">
-			<div class="countdown">
-				<span class="count-value" id="countdown-values"></span>
+		<main class="hero">
+			<p class="hero-eyebrow fade-up d1">We're getting married</p>
+			<h1 class="hero-names fade-up d2">Renard <span class="amp">&amp;</span> Dasha</h1>
+			<div class="ornament hero-ornament fade-up d3" aria-hidden="true">✦</div>
+			<p class="hero-date fade-up d3"><time datetime="2026-11-07">November 7, 2026</time></p>
+			<p class="hero-loc fade-up d4">Augusta, New Jersey</p>
+			<div class="hero-cta fade-up d5">
+				<a class="btn btn-solid" href="story.html">Our Story</a>
+				<a class="btn btn-ghost" href="details.html">Wedding Details</a>
 			</div>
-		</footer>
+			<div class="countdown fade-up d6" id="countdown" aria-label="Countdown to our wedding day">
+				<div class="count-tile"><span class="count-num" id="cd-days">&ndash;</span><span class="count-label">Days</span></div>
+				<div class="count-tile"><span class="count-num" id="cd-hours">&ndash;</span><span class="count-label">Hours</span></div>
+				<div class="count-tile"><span class="count-num" id="cd-mins">&ndash;</span><span class="count-label">Min</span></div>
+				<div class="count-tile"><span class="count-num" id="cd-secs">&ndash;</span><span class="count-label">Sec</span></div>
+			</div>
+		</main>
 	</body>
 </html>

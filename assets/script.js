@@ -1,18 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
     loadNav().then(() => {
         highlightActiveLink();
-        setBodyClass();
+        initNavToggle();
     });
 
+    setBodyClass();
     initCountdown();
+    initToday();
+    initReveal();
 });
-
-const el = document.getElementById('today');
-if (el) {
-    el.textContent = new Date().toLocaleDateString(undefined, {
-        month: 'long', day: 'numeric'
-    });
-}
 
 // Load shared nav into #nav-placeholder
 async function loadNav() {
@@ -22,8 +18,7 @@ async function loadNav() {
     try {
         const res = await fetch("nav.html");
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const html = await res.text();
-        placeholder.innerHTML = html;
+        placeholder.innerHTML = await res.text();
     } catch (err) {
         console.error("Failed to load nav:", err);
     }
@@ -32,12 +27,33 @@ async function loadNav() {
 // Highlight the current page in the nav
 function highlightActiveLink() {
     const path = window.location.pathname.split("/").pop() || "index.html";
-    const links = document.querySelectorAll("nav a");
-
-    links.forEach((a) => {
+    document.querySelectorAll(".nav-links a").forEach((a) => {
         const href = a.getAttribute("href");
         if (href === path || (path === "" && href === "index.html")) {
             a.classList.add("active");
+        }
+    });
+}
+
+// Mobile hamburger menu
+function initNavToggle() {
+    const nav = document.querySelector(".site-nav");
+    if (!nav) return;
+    const toggle = nav.querySelector(".nav-toggle");
+    const links = nav.querySelector(".nav-links");
+    if (!toggle || !links) return;
+
+    toggle.addEventListener("click", () => {
+        const open = nav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(open));
+        toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    });
+
+    // Close the menu after choosing a page
+    links.addEventListener("click", (e) => {
+        if (e.target.closest("a")) {
+            nav.classList.remove("open");
+            toggle.setAttribute("aria-expanded", "false");
         }
     });
 }
@@ -55,31 +71,72 @@ function setBodyClass() {
     }
 }
 
-// Countdown only runs on pages that have #countdown-values
+// Countdown tiles only run on pages that have #countdown
 function initCountdown() {
-    const countdownEl = document.getElementById("countdown-values");
-    if (!countdownEl) return; // do nothing on non-home pages
+    const wrap = document.getElementById("countdown");
+    if (!wrap) return;
+
+    const daysEl = document.getElementById("cd-days");
+    const hoursEl = document.getElementById("cd-hours");
+    const minsEl = document.getElementById("cd-mins");
+    const secsEl = document.getElementById("cd-secs");
 
     const targetDate = new Date("2026-11-07T00:00:00");
+    const pad = (n) => String(n).padStart(2, "0");
+    let timer;
 
-    function updateCountdown() {
-        const now = new Date();
-        const diff = targetDate - now;
+    function tick() {
+        const diff = targetDate - new Date();
 
         if (diff <= 0) {
-            countdownEl.textContent = "It's our wedding day!";
+            wrap.innerHTML = '<p class="count-done">It’s our wedding day!</p>';
+            clearInterval(timer);
             return;
         }
 
         const totalSeconds = Math.floor(diff / 1000);
-        const days = Math.floor(totalSeconds / (60 * 60 * 24));
-        const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
-        const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
-        const seconds = totalSeconds % 60;
-
-        countdownEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        daysEl.textContent = Math.floor(totalSeconds / 86400);
+        hoursEl.textContent = pad(Math.floor((totalSeconds % 86400) / 3600));
+        minsEl.textContent = pad(Math.floor((totalSeconds % 3600) / 60));
+        secsEl.textContent = pad(totalSeconds % 60);
     }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    tick();
+    timer = setInterval(tick, 1000);
+}
+
+// Fill in today's date on pages that show it (Travel weather section)
+function initToday() {
+    const el = document.getElementById("today");
+    if (!el) return;
+    el.textContent = new Date().toLocaleDateString(undefined, {
+        month: "long",
+        day: "numeric",
+    });
+}
+
+// Gentle scroll-in reveal for card sections
+function initReveal() {
+    const els = document.querySelectorAll(".reveal");
+    if (!els.length) return;
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced || !("IntersectionObserver" in window)) {
+        els.forEach((el) => el.classList.add("in"));
+        return;
+    }
+
+    const io = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("in");
+                    io.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -30px 0px" }
+    );
+
+    els.forEach((el) => io.observe(el));
 }

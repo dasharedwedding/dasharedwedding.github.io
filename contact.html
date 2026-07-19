@@ -22,13 +22,17 @@
     <body class="page">
         <div id="nav-placeholder"></div>
         <main class="page-content">
-            <h1>Contact Us</h1>
-            <section>
-                <p>
-                    If you have any questions not covered in <a href="qa.html">Q&A</a>, please feel free to reach out to us!
+            <header class="page-head">
+                <span class="page-script">say</span>
+                <h1>Hello</h1>
+                <div class="ornament" aria-hidden="true">✦</div>
+            </header>
+            <section class="reveal">
+                <p style="text-align:center;">
+                    If you have any questions not covered in <a href="qa.html">Q&amp;A</a>, please feel free to reach out to us!
                 </p>
             </section>
-            <section>
+            <section class="reveal">
                 <form class="contact-form" id="contactForm" action="https://formspree.io/f/xanayvka" method="POST" autocomplete="on" novalidate>
                     <div class="row">
                         <div class="field">
@@ -50,9 +54,9 @@
                     <input type="hidden" name="_subject" value="Dasha.Red - Email Message" />
 
                     <div class="actions">
-                        <button class="btn" type="submit" id="sendBtn">Send Message</button>
-                        <span id="statusOk" class="status ok" role="status" aria-live="polite">✓ Message sent!</span>
-                        <span id="statusErr" class="status err" role="status" aria-live="assertive">⚠︎ Something went wrong. Please try again later.</span>
+                        <button class="btn btn-solid" type="submit" id="sendBtn">Send Message</button>
+                        <span id="statusOk" class="status ok" role="status" aria-live="polite">&#10003; Message sent!</span>
+                        <span id="statusErr" class="status err" role="status" aria-live="assertive">&#9888;&#xFE0E; Something went wrong. Please try again later.</span>
                     </div>
                 </form>
             </section>

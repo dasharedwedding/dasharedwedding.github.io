@@ -1,11 +1,9 @@
+/* ===== Travel page: map, hotel cards, things-to-do grid ===== */
+
 .map-embed {
-    aspect-ratio: 16 / 9;          /* responsive */
     width: 100%;
-    border-radius: 14px;            /* matches your card style */
-    overflow: hidden;               /* rounds the iframe corners */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    margin: 25px 0 25px 0;
-    max-height: 320px;
+    aspect-ratio: 16 / 9;
+    max-height: 340px;
 }
 
 .map-embed iframe {
@@ -13,11 +11,133 @@
     height: 100%;
     border: 0;
     display: block;
+    border-radius: 10px;
 }
 
-.map-link a {
-    color: #fff;                    /* adjust to your theme */
-    text-decoration: underline;
-    opacity: 0.9;
+/* Hotel cards */
+.hotel-list {
+    list-style: none;
+    margin: 6px 0 14px;
+    padding: 0;
+    display: grid;
+    gap: 12px;
 }
-.map-link a:hover { opacity: 1; }
+
+.hotel-card {
+    padding: 18px 20px;
+    border-radius: 16px;
+    background: var(--glass);
+    border: 1px solid var(--card-line);
+    transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.hotel-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-line);
+    background: var(--glass-hover);
+}
+
+.hotel-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    margin-bottom: 4px;
+}
+
+.hotel-name {
+    font-family: var(--font-serif);
+    font-size: 1.18rem;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-line);
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.hotel-name:hover {
+    color: var(--accent-bright);
+    border-color: var(--accent-bright);
+}
+
+.hotel-top .badge {
+    margin-left: 0;
+}
+
+.hotel-card .hotel-note {
+    font-size: 0.92rem;
+    color: var(--muted);
+    margin-bottom: 6px;
+}
+
+.hotel-card .hotel-addr {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+}
+
+.hotel-card .hotel-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 0;
+}
+
+/* Things-to-do category cards */
+.todo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 6px;
+}
+
+.todo-card {
+    padding: 18px 20px;
+    border-radius: 16px;
+    background: var(--glass);
+    border: 1px solid var(--card-line);
+    transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.todo-card:hover {
+    border-color: var(--accent-line);
+    background: var(--glass-hover);
+}
+
+.todo-card h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 1.12rem;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+    color: var(--accent-bright);
+}
+
+.todo-card h3 .material-symbols-outlined {
+    font-size: 20px;
+    color: var(--accent);
+}
+
+.todo-card ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.todo-card li {
+    padding: 5px 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--body-ink);
+}
+
+.todo-card li + li {
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 700px) {
+    .todo-grid {
+        grid-template-columns: 1fr;
+    }
+}

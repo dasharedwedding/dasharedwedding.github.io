@@ -1,14 +1,5 @@
-/* Hide content while auth check runs
-html.auth-check body {
-    visibility: hidden;
-}
+/* ===== Password gate, styled to match the site ===== */
 
-html.auth-ok body {
-    visibility: visible;
-}
-*/
-
-/* Fullscreen password overlay */
 .password-overlay {
     position: fixed;
     inset: 0;
@@ -18,77 +9,91 @@ html.auth-ok body {
     align-items: center;
     justify-content: center;
 
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(24, 18, 36, 0.55);
 
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
 
     color: #ffffff;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro", sans-serif;
+    font-family: "Nunito", "Segoe UI", sans-serif;
 }
 
 .password-box {
-    max-width: 360px;
+    max-width: 380px;
     width: 90%;
-    padding: 26px 22px 22px;
-    border-radius: 18px;
-    background: rgba(10, 10, 10, 0.9);
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65);
+    padding: 34px 28px 28px;
+    border-radius: 22px;
+    background: rgba(62, 55, 84, 0.92);
+    border: 1px solid rgba(236, 201, 168, 0.35);
+    box-shadow: 0 24px 60px rgba(10, 6, 20, 0.6);
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .password-box h2 {
-    margin: 0 0 8px;
-    font-size: 1.1rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    margin: 0 0 4px;
+    font-family: "MeowScript", cursive;
+    font-weight: 400;
+    font-size: 2.4rem;
+    line-height: 1.1;
     color: #ffffff;
 }
 
 .password-box p {
-    margin: 0 0 14px;
-    font-size: 0.9rem;
-    color: #bbbbbb;
+    margin: 0 0 20px;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .password-input {
     width: 100%;
-    padding: 9px 10px;
-    margin: 0 0 10px;
+    padding: 12px 14px;
+    margin: 0 0 12px;
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.07);
     color: #ffffff;
-    font-size: 0.95rem;
+    font-size: 1rem;
     text-align: center;
+    letter-spacing: 0.2em;
     outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.password-input:focus {
+    border-color: #ecc9a8;
+    box-shadow: 0 0 0 3px rgba(236, 201, 168, 0.2);
 }
 
 .password-input::placeholder {
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.08em;
 }
 
 .password-button {
     width: 100%;
-    padding: 9px 10px;
+    padding: 12px 14px;
     border-radius: 999px;
     border: none;
-    background: #ffffff;
-    color: #000000;
-    font-weight: 600;
-    font-size: 0.9rem;
+    background: #ecc9a8;
+    color: #453852;
+    font-family: "Nunito", "Segoe UI", sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.18em;
     cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .password-button:hover {
-    opacity: 0.9;
+    background: #f6dfc7;
+    transform: translateY(-1px);
 }
 
 .password-error {
-    margin-top: 8px;
-    font-size: 0.8rem;
-    color: #ff6b6b;
+    margin-top: 12px;
+    font-size: 0.82rem;
+    color: #ffb3b3;
 }

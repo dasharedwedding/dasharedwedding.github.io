@@ -22,9 +22,13 @@
     <body class="page">
         <div id="nav-placeholder"></div>
         <main class="page-content">
-            <h1>Travel</h1>
-            <section>
-                <div class="map-embed">
+            <header class="page-head">
+                <span class="page-script">getting</span>
+                <h1>Around</h1>
+                <div class="ornament" aria-hidden="true">✦</div>
+            </header>
+            <section class="reveal">
+                <div class="framed map-embed">
                     <iframe
                             title="Map to our wedding area"
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5039.558973071432!2d-74.71661630000001!3d41.135521000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c36ecce9a108bb%3A0x8f84be26dc5089b0!2sThe%20Sussex%20County%20Fairgrounds!5e1!3m2!1sen!2sus!4v1762998876996!5m2!1sen!2sus"
@@ -34,59 +38,68 @@
                     ></iframe>
                 </div>
             </section>
-            <section>
+            <section class="reveal">
                 <h2>
-                    <span class="material-symbols-outlined">travel</span>
+                    <span class="icon-chip"><span class="material-symbols-outlined" aria-hidden="true">travel</span></span>
                     Getting Here
                 </h2>
                 <p>
                     The closest airport is Newark Liberty International (EWR), which is roughly a 60 minute (52 mile) drive away.
-                    If flying into EWR, renting a car or carpooling is recommended, as public transit and rideshare options near the venue are limited. <br/>
+                    If flying into EWR, renting a car or carpooling is recommended, as public transit and rideshare options near the venue are limited.
                 </p>
             </section>
-            <section>
+            <section class="reveal">
                 <h2>
-                    <span class="material-symbols-outlined">hotel</span>
+                    <span class="icon-chip"><span class="material-symbols-outlined" aria-hidden="true">hotel</span></span>
                     Nearby Hotels
                 </h2>
-                <ul class="bullets">
-                    <!--<li>
-                        <a href="http://www.cobminridgemotel.com/" target="_blank">Cobmin Ridge Motel</a>
-                        <span class="badge">Contact us to book</span><br/>
-                        346 US-206, Branchville, NJ 07826 (5 min; 3.4 mi; W)<br/>
-                        (862) 220-3137
+                <ul class="hotel-list">
+                    <!--<li class="hotel-card">
+                        <div class="hotel-top">
+                            <a class="hotel-name" href="http://www.cobminridgemotel.com/" target="_blank" rel="noopener">Cobmin Ridge Motel</a>
+                            <span class="badge badge-accent">Contact us to book</span>
+                        </div>
+                        <p class="hotel-addr">346 US-206, Branchville, NJ 07826 &middot; <a href="tel:+18622203137">(862) 220-3137</a></p>
+                        <p class="hotel-meta"><span class="chip">5 min</span><span class="chip">3.4 mi W</span></p>
                     </li>-->
-                    <li>
-                        <a href="https://www.choicehotels.com/new-jersey/vernon/quality-inn-hotels/nj311" target="_blank">Quality Inn near Mountain Creek</a>
-                        <span class="badge">Hotel Block - Call directly and identify booking for "RENARD/DASHA WEDDING"</span><br/>
-                        15 NJ-94, Vernon, NJ 07462 (20 min; 12.4 mi; N)<br/>
-                        (973) 737-5943
+                    <li class="hotel-card">
+                        <div class="hotel-top">
+                            <a class="hotel-name" href="https://www.choicehotels.com/new-jersey/vernon/quality-inn-hotels/nj311" target="_blank" rel="noopener">Quality Inn near Mountain Creek</a>
+                            <span class="badge badge-accent">Hotel Block</span>
+                        </div>
+                        <p class="hotel-note">Call directly and identify your booking as the &ldquo;RENARD/DASHA WEDDING&rdquo; block.</p>
+                        <p class="hotel-addr">15 NJ-94, Vernon, NJ 07462 &middot; <a href="tel:+19737375943">(973) 737-5943</a></p>
+                        <p class="hotel-meta"><span class="chip">20 min</span><span class="chip">12.4 mi N</span></p>
                     </li>
-                    <li>
-                        <a href="https://www.ihg.com/holidayinn/hotels/us/en/budd-lake/ewrbl/hoteldetail" target="_blank">Holiday Inn Budd Lake - Rockaway Area</a><br/>
-                        15 NJ-94, Vernon, NJ 07462 (33 min; 18.3 mi; S)<br/>
-                        (973) 448-1100
+                    <li class="hotel-card">
+                        <div class="hotel-top">
+                            <a class="hotel-name" href="https://www.ihg.com/holidayinn/hotels/us/en/budd-lake/ewrbl/hoteldetail" target="_blank" rel="noopener">Holiday Inn Budd Lake - Rockaway Area</a>
+                        </div>
+                        <p class="hotel-addr">15 NJ-94, Vernon, NJ 07462 &middot; <a href="tel:+19734481100">(973) 448-1100</a></p>
+                        <p class="hotel-meta"><span class="chip">33 min</span><span class="chip">18.3 mi S</span></p>
                     </li>
-                    <li>
-                        <a href="https://www.marriott.com/en-us/hotels/cdwri-residence-inn-mt-olive-at-international-trade-center/overview/" target="_blank">Residence Inn by Marriott Mt. Olive</a><br/>
-                        271 Continental Dr N, Stanhope, NJ 07874 (33 min; 18.3 mi; S)<br/>
-                        (973) 691-1720
+                    <li class="hotel-card">
+                        <div class="hotel-top">
+                            <a class="hotel-name" href="https://www.marriott.com/en-us/hotels/cdwri-residence-inn-mt-olive-at-international-trade-center/overview/" target="_blank" rel="noopener">Residence Inn by Marriott Mt. Olive</a>
+                        </div>
+                        <p class="hotel-addr">271 Continental Dr N, Stanhope, NJ 07874 &middot; <a href="tel:+19736911720">(973) 691-1720</a></p>
+                        <p class="hotel-meta"><span class="chip">33 min</span><span class="chip">18.3 mi S</span></p>
                     </li>
-                    <li>
-                        <a href="https://www.ihg.com/holidayinnexpress/hotels/us/en/newton/nwtnj/hoteldetail?cm_mmc=GoogleMaps-_-EX-_-US-_-NWTNJ" target="_blank">Holiday Inn Express & Suites Newton Sparta</a>
-                        <span class="badge">Fully booked</span><br/>
-                        8 N Park Dr, Newton, NJ 07860 (9 min; 5.6 mi; S)<br/>
-                        (973) 940-8888
-                    </li>
-                    <li>
-                        Check <a href="https://www.google.com/travel/search?q=hotels%20near%20augusta%20nj" target="_blank">Google Travel</a> for other hotels around the area.
+                    <li class="hotel-card">
+                        <div class="hotel-top">
+                            <a class="hotel-name" href="https://www.ihg.com/holidayinnexpress/hotels/us/en/newton/nwtnj/hoteldetail?cm_mmc=GoogleMaps-_-EX-_-US-_-NWTNJ" target="_blank" rel="noopener">Holiday Inn Express &amp; Suites Newton Sparta</a>
+                            <span class="badge">Fully booked</span>
+                        </div>
+                        <p class="hotel-addr">8 N Park Dr, Newton, NJ 07860 &middot; <a href="tel:+19739408888">(973) 940-8888</a></p>
+                        <p class="hotel-meta"><span class="chip">9 min</span><span class="chip">5.6 mi S</span></p>
                     </li>
                 </ul>
+                <p class="lede">Check <a href="https://www.google.com/travel/search?q=hotels%20near%20augusta%20nj" target="_blank" rel="noopener">Google Travel</a> for other hotels around the area.</p>
             </section>
 
-            <section>
+            <section class="reveal">
                 <h2>
-                    <span class="material-symbols-outlined">airport_shuttle</span>
+                    <span class="icon-chip"><span class="material-symbols-outlined" aria-hidden="true">airport_shuttle</span></span>
                     Shuttle
                 </h2>
                 <p>
@@ -104,9 +117,9 @@
                 </p>-->
             </section>
 
-            <section>
+            <section class="reveal">
                 <h2>
-                    <span class="material-symbols-outlined">parking_sign</span>
+                    <span class="icon-chip"><span class="material-symbols-outlined" aria-hidden="true">parking_sign</span></span>
                     Parking
                 </h2>
                 <p>
@@ -115,59 +128,71 @@
                 </p>
             </section>
 
-            <section>
+            <section class="reveal">
                 <h2>
-                    <span class="material-symbols-outlined">things_to_do</span>
+                    <span class="icon-chip"><span class="material-symbols-outlined" aria-hidden="true">things_to_do</span></span>
                     Things To Do Nearby
                 </h2>
-                <p class="lede">
-                    Breweries:
-                    <ul class="bullets">
-                        <li><a href="https://angryerik.com/" target="_blank">Angry Erik Brewing</a> in Newton, NJ</li>
-                        <li><a href="https://www.aliasbrewworks.com/" target="_blank">Alias Brew Works</a> in Vernon, NJ</li>
-                        <li><a href="https://www.milkstreetdistillery.com/welcome" target="_blank">Milk Street Distillery</a> at Branchville, NJ</li>
-                    </ul>
-                    Restaurants:
-                    <ul class="bullets">
-                        <li><a href="https://thecirclerestaurant.com/" target="_blank">The Circle</a> in Fredon, NJ</li>
-                        <li><a href="https://www.facebook.com/hydeawayrestaurantnj" target="_blank">The Hyde-Away</a> in Newton, NJ</li>
-                        <li><a href="https://www.thefarmersdaughternj.com/" target="_blank">The Farmer’s Daughter</a> in Newton, NJ</li>
-                        <li><a href="https://industryspartanj.com/" target="_blank">Industry</a> in Sparta, NJ</li>
-                        <li><a href="https://www.mohawkhouse.com/" target="_blank">Mohawk House</a> in Sparta, NJ</li>
-                        <li><a href="https://stmoritzgrill.com/" target="_blank">St. Moritz Grill</a> in Sparta, NJ</li>
-                    </ul>
-                    Farms:
-                    <ul class="bullets">
-                        <li><a href="https://windybrowfarms.com/" target="_blank">Windy Brow Farms</a> in Newton, NJ</li>
-                        <li><a href="https://lentinifarms.com/" target="_blank">Lentini Farms</a> in Newton, NJ</li>
-                    </ul>
-                    Hiking:
-                    <ul class="bullets">
-                        <li><a href="https://www.alltrails.com/trail/us/new-jersey/stairway-to-heaven-trail">Stairway to Heaven</a> (2.8 mi, 882 ft, out & back) at Vernon, NJ</li>
-                        <li><a href="https://www.alltrails.com/trail/us/new-jersey/normanook-tower-via-appalachian-trail-loop">Normanook Tower</a> (4.9 mi, 761 ft, loop) at Branchville, NJ</li>
-                        <li><a href="https://www.alltrails.com/trail/us/new-jersey/swartswood-spring-lake-trail">Swartswood Spring Lake Trail</a> (2.8 mi, 213 ft, loop) at Swartswood, NJ</li>
-                        <li>Visit <a href="https://www.alltrails.com/explore?b_br_lat=41.01584&b_br_lng=-74.57809&b_tl_lat=41.24197&b_tl_lng=-74.87831" target="_blank">AllTrails</a>  for other suggestions</li>
-                    </ul>
-                    Other:
-                    <ul class="bullets">
-                        <li><a href="https://treescapeadventurepark.com/" target="_blank">TreEscape</a> at Vernon, NJ</li>
-                        <li><a href="https://www.farmsteadgolf.com/" target="_blank">Golf</a> at Lafayette, NJ</li>
-                        <li><a href="https://ypickleballcenter.org/" target="_blank">Pickleball</a> at Lafayette, NJ</li>
-                    </ul>
-                </p>
+                <div class="todo-grid">
+                    <div class="todo-card">
+                        <h3><span class="material-symbols-outlined" aria-hidden="true">sports_bar</span>Breweries</h3>
+                        <ul>
+                            <li><a href="https://angryerik.com/" target="_blank" rel="noopener">Angry Erik Brewing</a> in Newton, NJ</li>
+                            <li><a href="https://www.aliasbrewworks.com/" target="_blank" rel="noopener">Alias Brew Works</a> in Vernon, NJ</li>
+                            <li><a href="https://www.milkstreetdistillery.com/welcome" target="_blank" rel="noopener">Milk Street Distillery</a> at Branchville, NJ</li>
+                        </ul>
+                    </div>
+                    <div class="todo-card">
+                        <h3><span class="material-symbols-outlined" aria-hidden="true">restaurant</span>Restaurants</h3>
+                        <ul>
+                            <li><a href="https://thecirclerestaurant.com/" target="_blank" rel="noopener">The Circle</a> in Fredon, NJ</li>
+                            <li><a href="https://www.facebook.com/hydeawayrestaurantnj" target="_blank" rel="noopener">The Hyde-Away</a> in Newton, NJ</li>
+                            <li><a href="https://www.thefarmersdaughternj.com/" target="_blank" rel="noopener">The Farmer&rsquo;s Daughter</a> in Newton, NJ</li>
+                            <li><a href="https://industryspartanj.com/" target="_blank" rel="noopener">Industry</a> in Sparta, NJ</li>
+                            <li><a href="https://www.mohawkhouse.com/" target="_blank" rel="noopener">Mohawk House</a> in Sparta, NJ</li>
+                            <li><a href="https://stmoritzgrill.com/" target="_blank" rel="noopener">St. Moritz Grill</a> in Sparta, NJ</li>
+                        </ul>
+                    </div>
+                    <div class="todo-card">
+                        <h3><span class="material-symbols-outlined" aria-hidden="true">agriculture</span>Farms</h3>
+                        <ul>
+                            <li><a href="https://windybrowfarms.com/" target="_blank" rel="noopener">Windy Brow Farms</a> in Newton, NJ</li>
+                            <li><a href="https://lentinifarms.com/" target="_blank" rel="noopener">Lentini Farms</a> in Newton, NJ</li>
+                            <li><a href="https://spacefarms.com/" target="_blank" rel="noopener">Space Farms: Zoo & Museum</a> at Sussex, NJ</li>
+                        </ul>
+                    </div>
+                    <div class="todo-card">
+                        <h3><span class="material-symbols-outlined" aria-hidden="true">hiking</span>Hiking</h3>
+                        <ul>
+                            <li><a href="https://www.alltrails.com/trail/us/new-jersey/stairway-to-heaven-trail" target="_blank" rel="noopener">Stairway to Heaven</a> (2.8 mi, 882 ft, out &amp; back) at Vernon, NJ</li>
+                            <li><a href="https://www.alltrails.com/trail/us/new-jersey/normanook-tower-via-appalachian-trail-loop" target="_blank" rel="noopener">Normanook Tower</a> (4.9 mi, 761 ft, loop) at Branchville, NJ</li>
+                            <li><a href="https://www.alltrails.com/trail/us/new-jersey/swartswood-spring-lake-trail" target="_blank" rel="noopener">Swartswood Spring Lake Trail</a> (2.8 mi, 213 ft, loop) at Swartswood, NJ</li>
+                            <li>Visit <a href="https://www.alltrails.com/explore?b_br_lat=41.01584&b_br_lng=-74.57809&b_tl_lat=41.24197&b_tl_lng=-74.87831" target="_blank" rel="noopener">AllTrails</a> for other suggestions</li>
+                        </ul>
+                    </div>
+                    <div class="todo-card">
+                        <h3><span class="material-symbols-outlined" aria-hidden="true">attractions</span>Activities</h3>
+                        <ul>
+                            <li><a href="https://treescapeadventurepark.com/" target="_blank" rel="noopener">TreEscape</a> at Vernon, NJ</li>
+                            <li><a href="https://www.farmsteadgolf.com/" target="_blank" rel="noopener">Golf</a> at Lafayette, NJ</li>
+                            <li><a href="https://www.castlecoveminigolfnj.com/" target="_blank" rel="noopener">Castle Cove Mini Golf</a> at Lake Hopatcong, NJ</li>
+                            <li><a href="https://www.sterlinghillminingmuseum.org/" target="_blank" rel="noopener">The Sterling Hill Mining Museum</a> at Ogdensburg, NJ</li>
+                        </ul>
+                    </div>
+                </div>
             </section>
 
-            <h2>
-                <span class="material-symbols-outlined">thermostat</span>
-                Current Weather & Forecast
-            </h2>
-            <p>
-                Today (<span id="today"></span>)
+            <section class="reveal">
+                <h2>
+                    <span class="icon-chip"><span class="material-symbols-outlined" aria-hidden="true">thermostat</span></span>
+                    Current Weather &amp; Forecast
+                </h2>
+                <p class="lede">Today (<span id="today"></span>)</p>
                 <a class="weatherwidget-io" href="https://forecast7.com/en/41d06n74d75/newton/?unit=us" data-label_1="Augusta, NJ" data-label_2="Weather" data-icons="Climacons Animated" data-days="5" data-theme="pure" >Augusta, NJ Weather</a>
                 <script>
                     !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
                 </script>
-            </p>
+            </section>
         </main>
     </body>
 </html>
