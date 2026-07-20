@@ -339,12 +339,16 @@ summary:focus-visible {
     position: relative;
     z-index: 2;
     min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     text-align: center;
-    padding: calc(var(--top-pad) - 10px) 20px 240px;
+}
+
+.hero-top {
+    position: absolute;
+    top: 16.6667%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    padding: 0 20px;
 }
 
 .hero-eyebrow {
@@ -378,9 +382,9 @@ summary:focus-visible {
 
 .hero-bottom {
     position: absolute;
+    top: 83.3333%;
     left: 50%;
-    bottom: 48px;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -948,8 +952,8 @@ details.faq[open] .faq-a {
         padding: 30px 22px;
     }
 
-    .hero {
-        padding-bottom: 28px;
+    .hero-top {
+        top: max(16.6667%, calc(var(--top-pad) + 130px));
     }
 
     .hero-cta {
