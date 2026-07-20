@@ -344,7 +344,12 @@ summary:focus-visible {
 
 .hero-top {
     position: absolute;
-    top: 16.6667%;
+    /* Center within the top third of the space below the fixed navbar,
+       so this never sits under it regardless of viewport height. */
+    top: max(
+        calc(var(--top-pad) + (100% - var(--top-pad)) / 6),
+        calc(var(--top-pad) + 40px)
+    );
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
@@ -382,7 +387,8 @@ summary:focus-visible {
 
 .hero-bottom {
     position: absolute;
-    top: 83.3333%;
+    /* Center within the bottom third of the space below the fixed navbar. */
+    top: calc(var(--top-pad) + (100% - var(--top-pad)) * 5 / 6);
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
@@ -950,10 +956,6 @@ details.faq[open] .faq-a {
 
     .page-content {
         padding: 30px 22px;
-    }
-
-    .hero-top {
-        top: max(16.6667%, calc(var(--top-pad) + 130px));
     }
 
     .hero-cta {
