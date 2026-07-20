@@ -376,7 +376,20 @@ summary:focus-visible {
     margin-bottom: 22px;
 }
 
+.hero-bottom {
+    position: absolute;
+    left: 50%;
+    bottom: 48px;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+}
+
 .hero-date {
+    font-family: var(--font-body);
     font-size: clamp(1.25rem, 3vw, 1.6rem);
     letter-spacing: 0.24em;
     text-indent: 0.24em;
@@ -386,7 +399,7 @@ summary:focus-visible {
 }
 
 .hero-loc {
-    font-family: var(--font-serif);
+    font-family: var(--font-body);
     font-size: 0.85rem;
     letter-spacing: 0.3em;
     text-indent: 0.3em;
