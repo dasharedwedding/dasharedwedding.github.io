@@ -450,7 +450,7 @@ summary:focus-visible {
 }
 
 .count-num {
-    font-family: var(--font-serif);
+    font-family: var(--font-body);
     font-size: 2rem;
     line-height: 1.1;
     color: var(--accent);
