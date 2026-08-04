@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>RSVP | Renard & Dasha's Wedding</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="assets/styles.css" />
+        <script src="assets/script.js" defer></script>
+        <link rel="stylesheet" href="assets/security.css" />
+        <script src="assets/security.js" defer></script>
+        <link rel="stylesheet" href="assets/rsvp.css" />
+        <script src="assets/rsvp.js" defer></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WJN626HPX7"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-WJN626HPX7');
+        </script>
+    </head>
+    <body class="page">
+        <div id="nav-placeholder"></div>
+        <main class="page-content">
+            <header class="page-head">
+                <span class="page-script">please</span>
+                <h1>RSVP</h1>
+                <div class="ornament" aria-hidden="true">✦</div>
+            </header>
+            <section class="reveal">
+                <p style="text-align:center;">
+                    We can't wait to celebrate with you! Please respond by <strong>October 7, 2026</strong>.
+                </p>
+            </section>
+            <section class="reveal">
+                <form class="rsvp-form" id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSclSrmH416a_l6XY78KSmtyKQJwAlZT1lNmxXZD1irTzUBhKQ/formResponse" method="POST" autocomplete="on" novalidate>
+                    <div class="field">
+                        <label for="fullName">Full Name(s)</label>
+                        <input id="fullName" name="entry.2065337719" type="text" required autocomplete="name" placeholder="Your name (and guest, if applicable)" />
+                    </div>
+
+                    <div class="field">
+                        <label>Will you attend?</label>
+                        <div class="radio-group">
+                            <label class="radio-pill">
+                                <input type="radio" name="entry.644288828" value="Joyfully Accept" required />
+                                <span>Joyfully Accept ✅</span>
+                            </label>
+                            <label class="radio-pill">
+                                <input type="radio" name="entry.644288828" value="Regretfully Decline" required />
+                                <span>Regretfully Decline ❌</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label>Meal Choice</label>
+                        <div class="radio-group">
+                            <label class="radio-pill">
+                                <input type="radio" name="entry.1976574276" value="Chicken" />
+                                <span>Chicken</span>
+                            </label>
+                            <label class="radio-pill">
+                                <input type="radio" name="entry.1976574276" value="Beef" />
+                                <span>Beef</span>
+                            </label>
+                            <label class="radio-pill">
+                                <input type="radio" name="entry.1976574276" value="Vegetarian" />
+                                <span>Vegetarian</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="songRequest">What song will get you on the dance floor no matter what?</label>
+                        <input id="songRequest" name="entry.658346557" type="text" placeholder="Song title & artist" />
+                    </div>
+
+                    <div class="actions">
+                        <button class="btn btn-solid" type="submit" id="rsvpBtn">Send RSVP</button>
+                        <span id="rsvpOk" class="status ok" role="status" aria-live="polite">&#10003; RSVP received — thank you!</span>
+                        <span id="rsvpErr" class="status err" role="status" aria-live="assertive">&#9888;&#xFE0E; Something went wrong. Please try again later.</span>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </body>
+</html>
