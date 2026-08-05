@@ -1,107 +1,311 @@
-/* ===== Story page: national parks gallery ===== */
+/* ===== Story page: national parks map ===== */
 
-.gallery .lede {
+.parkmap-section .lede {
     text-align: center;
-    margin: 0 auto 16px;
+    margin: 0 auto 18px;
     max-width: 60ch;
 }
 
-/* Responsive grid */
-.gallery-grid {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 14px;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+/* The map is drawn in a 959 x 593 albersUsa canvas. Dots are positioned as a
+   percentage of that same box, so they stay pinned to their park at any size. */
+/* Below ~560px the map is wider than the card, so it pans sideways rather
+   than shrinking the dots into each other. position() keeps the popup inside
+   the stage, so nothing is ever clipped vertically. */
+.parkmap-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
-/* Card */
-.gallery-card {
+.parkmap-stage {
     position: relative;
-    border-radius: 14px;
-    overflow: hidden;
-    background: var(--glass);
-    border: 1px solid var(--card-line);
-    box-shadow: 0 12px 28px rgba(20, 16, 32, 0.25);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 959 / 593;
+    width: 100%;
+    min-width: 520px;
+    margin: 0 auto;
 }
 
-/*.gallery-card:hover,*/
-/*.gallery-card:focus-within {*/
-/*    transform: translateY(-3px);*/
-/*    border-color: var(--accent-line);*/
-/*    box-shadow: 0 18px 40px rgba(20, 16, 32, 0.35);*/
-/*}*/
-
-/* Media */
-.gallery-card img {
+.parkmap-svg {
+    display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    display: block;
-    /*transform: scale(1);*/
-    /*transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.3, 1);*/
-    margin: 0;
+    overflow: visible;
 }
 
-/* Subtle zoom on hover/focus */
-/*@media (hover: hover) {*/
-/*    .gallery-card:hover img,*/
-/*    .gallery-card:focus-within img {*/
-/*        transform: scale(1.04);*/
-/*    }*/
-/*}*/
+/* The card is glass over a photo, so the land is nearly opaque — at anything
+   less the background image reads straight through it and the coastline
+   stops being legible. Deep plum keeps it in the site's palette. */
+.usmap-land path {
+    fill: rgba(38, 33, 54, 0.92);
+}
 
-/* Caption overlay (animated in on hover/focus) */
-.gallery-card figcaption {
+.usmap-borders path {
+    stroke: rgba(255, 255, 255, 0.42);
+    stroke-width: 1;
+}
+
+.usmap-sep {
+    stroke: rgba(255, 255, 255, 0.28);
+    stroke-width: 1.5;
+}
+
+/* ---- Park dots ---- */
+.park-dot {
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 22px 12px 10px;
-    font-size: 0.88rem;
-    color: #fff;
-    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
-    background: linear-gradient(to top, rgba(20, 16, 32, 0.72), rgba(20, 16, 32, 0));
-    transform: translateY(110%);
-    transition: transform 0.35s ease;
-    pointer-events: none;
+    left: var(--x);
+    top: var(--y);
+    transform: translate(-50%, -50%);
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    /* The button is a generous 22px hit target; the visible dot is the ::after
+       pip in the middle, so neighbouring parks stay individually clickable. */
 }
 
-.gallery-card:hover figcaption,
-.gallery-card:focus-within figcaption {
+.park-dot::after {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 1.5px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 0 3px rgba(236, 201, 168, 0.18), 0 2px 6px rgba(20, 16, 32, 0.5);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.park-dot:hover,
+.park-dot:focus-visible,
+.park-dot.is-active {
+    z-index: 3;
+}
+
+.park-dot:hover::after,
+.park-dot:focus-visible::after,
+.park-dot.is-active::after {
+    background: var(--accent-bright);
+    transform: scale(1.45);
+    box-shadow: 0 0 0 5px rgba(236, 201, 168, 0.28), 0 4px 10px rgba(20, 16, 32, 0.6);
+}
+
+.park-dot:focus {
+    outline: none;
+}
+
+.park-dot:focus-visible::after {
+    border-color: #fff;
+}
+
+/* ---- Photo popup ---- */
+.park-pop {
+    position: absolute;
+    z-index: 6;
+    width: 216px;
+    margin: 0;
+    padding: 8px;
+    border-radius: 14px;
+    background: var(--card);
+    border: 1px solid var(--accent-line);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.park-pop[hidden] {
+    display: none;
+}
+
+.park-pop.is-open {
+    opacity: 1;
     transform: translateY(0);
 }
 
-/* Always-show caption on touch devices (no hover) */
-@media (hover: none) {
-    .gallery-card figcaption {
-        transform: none;
+.park-pop img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 9px;
+    margin: 0;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.park-pop figcaption {
+    margin-top: 7px;
+    text-align: center;
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    line-height: 1.3;
+    color: var(--ink);
+}
+
+/* Little pointer aimed back at the dot */
+.park-pop::after {
+    content: "";
+    position: absolute;
+    left: var(--tail-x, 50%);
+    width: 10px;
+    height: 10px;
+    margin-left: -5px;
+    background: var(--card);
+    border: 1px solid var(--accent-line);
+    transform: rotate(45deg);
+}
+
+.park-pop.above::after {
+    bottom: -6px;
+    border-top: 0;
+    border-left: 0;
+}
+
+.park-pop.below::after {
+    top: -6px;
+    border-bottom: 0;
+    border-right: 0;
+}
+
+.parkmap-hint {
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--faint);
+    margin: 14px 0 0;
+}
+
+/* Only shown once the map is wide enough to need panning */
+.parkmap-swipe {
+    display: none;
+    text-align: center;
+    font-size: 0.76rem;
+    letter-spacing: 0.04em;
+    color: var(--faint);
+    margin: 10px 0 0;
+}
+
+/* ---- Thumbnail rail: every park at a glance, paired with the map ---- */
+.park-rail {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    margin: 18px 0 0;
+    padding: 4px 2px 12px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+
+/* The glide for revealThumb(); it sets scrollLeft and lets this animate it. */
+@media (prefers-reduced-motion: no-preference) {
+    .park-rail {
+        scroll-behavior: smooth;
+    }
+}
+
+.park-rail li {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+}
+
+.park-thumb {
+    display: block;
+    width: 128px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    text-align: center;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.park-thumb img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    margin: 0;
+    border-radius: 10px;
+    border: 1px solid var(--card-line);
+    box-shadow: 0 6px 16px rgba(20, 16, 32, 0.35);
+    opacity: 0.72;
+    transition: opacity 0.22s ease, transform 0.22s ease, border-color 0.22s ease;
+}
+
+.park-thumb span {
+    display: block;
+    margin-top: 6px;
+    font-family: var(--font-serif);
+    font-size: 0.72rem;
+    line-height: 1.25;
+    color: var(--muted);
+    transition: color 0.22s ease;
+}
+
+.park-thumb:hover img,
+.park-thumb:focus-visible img,
+.park-thumb.is-active img {
+    opacity: 1;
+    transform: translateY(-3px);
+    border-color: var(--accent-line);
+}
+
+.park-thumb:hover span,
+.park-thumb:focus-visible span,
+.park-thumb.is-active span {
+    color: var(--accent);
+}
+
+.park-thumb:focus {
+    outline: none;
+}
+
+.park-thumb:focus-visible img {
+    border-color: var(--accent-bright);
+    box-shadow: 0 0 0 2px var(--accent-line), 0 6px 16px rgba(20, 16, 32, 0.35);
+}
+
+@media (max-width: 760px) {
+    .park-pop {
+        width: 172px;
+    }
+
+    .parkmap-swipe {
+        display: block;
+    }
+
+    .park-dot {
+        width: 20px;
+        height: 20px;
+    }
+
+    .park-dot::after {
+        inset: 5.5px;
+    }
+
+    .park-thumb {
+        width: 112px;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .gallery-card,
-    .gallery-card img,
-    .gallery-card figcaption {
+    .park-dot::after,
+    .park-pop,
+    .park-thumb img,
+    .park-thumb span {
         transition: none;
     }
-}
 
-@media (max-width: 760px) {
-    .gallery-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 480px) {
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .gallery-card figcaption {
+    .park-thumb:hover img,
+    .park-thumb:focus-visible img,
+    .park-thumb.is-active img {
         transform: none;
     }
 }
