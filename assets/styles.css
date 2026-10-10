@@ -226,6 +226,12 @@ body.page {
     opacity: 0.55;
 }
 
+/* RSVP closed: gray pill instead of rose gold */
+.nav-links a.nav-rsvp.disabled {
+    color: var(--muted);
+    border-color: var(--card-line);
+}
+
 /* Hamburger (hidden on desktop) */
 .nav-toggle {
     display: none;
