@@ -163,7 +163,7 @@ function initSevenEgg() {
 
         const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         if (!reduced) burstConfetti(seven);
-        showEggCode("2456");
+        showEggCode("0806"); // if you see this you're a cheater lol
     });
 }
 
