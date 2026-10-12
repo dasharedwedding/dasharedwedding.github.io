@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initCountdown();
     initToday();
     initReveal();
+    initSevenEgg();
 });
 
 // Load shared nav into #nav-placeholder
@@ -145,4 +146,117 @@ function initReveal() {
     );
 
     els.forEach((el) => io.observe(el));
+}
+
+// Easter egg: click the "7" in the home page date 7 times
+function initSevenEgg() {
+    const seven = document.getElementById("egg-seven");
+    if (!seven) return;
+
+    const CLICKS_NEEDED = 7;
+    let clicks = 0;
+
+    seven.addEventListener("click", () => {
+        clicks += 1;
+        if (clicks < CLICKS_NEEDED) return;
+        clicks = 0;
+
+        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (!reduced) burstConfetti(seven);
+        showEggCode("2456");
+    });
+}
+
+// Confetti explosion from the center of an element, drawn on a temporary canvas
+function burstConfetti(origin) {
+    const canvas = document.createElement("canvas");
+    canvas.className = "egg-confetti";
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext("2d");
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    ctx.scale(dpr, dpr);
+
+    const rect = origin.getBoundingClientRect();
+    const x0 = rect.left + rect.width / 2;
+    const y0 = rect.top + rect.height / 2;
+    const css = getComputedStyle(document.documentElement);
+    const colors = ["--accent", "--accent-bright", "--ink", "--egg-purple", "--egg-purple-light"]
+        .map((name) => css.getPropertyValue(name).trim());
+
+    const pieces = Array.from({ length: 180 }, () => {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 6 + Math.random() * 14;
+        return {
+            x: x0,
+            y: y0,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed - 6,
+            w: 6 + Math.random() * 6,
+            h: 8 + Math.random() * 8,
+            rot: Math.random() * Math.PI,
+            spin: (Math.random() - 0.5) * 0.4,
+            color: colors[Math.floor(Math.random() * colors.length)],
+        };
+    });
+
+    const start = performance.now();
+    const DURATION = 3200;
+
+    function frame(now) {
+        const t = now - start;
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        ctx.globalAlpha = Math.max(0, 1 - Math.max(0, t - DURATION * 0.6) / (DURATION * 0.4));
+
+        pieces.forEach((p) => {
+            p.vx *= 0.985;
+            p.vy = p.vy * 0.985 + 0.25;
+            p.x += p.vx;
+            p.y += p.vy;
+            p.rot += p.spin;
+
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rot);
+            // Squash horizontally over time so pieces look like they flutter
+            ctx.scale(Math.cos(p.rot * 2), 1);
+            ctx.fillStyle = p.color;
+            ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+            ctx.restore();
+        });
+
+        if (t < DURATION) {
+            requestAnimationFrame(frame);
+        } else {
+            canvas.remove();
+        }
+    }
+
+    requestAnimationFrame(frame);
+}
+
+// Big purple code in the middle of the screen; tap anywhere or press Esc to close
+function showEggCode(code) {
+    if (document.querySelector(".egg-reveal")) return;
+
+    const reveal = document.createElement("div");
+    reveal.className = "egg-reveal";
+    reveal.setAttribute("role", "status");
+    reveal.innerHTML = `<span class="egg-code">${code}</span>`;
+    document.body.appendChild(reveal);
+
+    function close() {
+        reveal.classList.add("out");
+        setTimeout(() => reveal.remove(), 400);
+        document.removeEventListener("keydown", onKey);
+    }
+
+    function onKey(e) {
+        if (e.key === "Escape") close();
+    }
+
+    reveal.addEventListener("click", close);
+    document.addEventListener("keydown", onKey);
 }
